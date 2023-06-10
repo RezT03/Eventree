@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evnetry</title>
+    <link rel="shortcut icon" href="/images/logo-favicon-eventree.svg" type="image/x-icon">
+    <!-- google font link -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- tailwind css cdn -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ionicons cdn -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <!-- alpine js cdn -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- style css -->
+    <style type="text/tailwindcss">
+        body{
+            font-family: 'Inter', sans-serif;
+        }
+        
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    backgroundImage: {
+                        'hero': "url('/images/hero.webp')",
+                    },
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="scroll-smooth">
+
+
+    <!-- ====== header ====== -->
+
+
+    <header x-data="{navbarOpen: false}" class="absolute sticky left-0 top-0 z-50 bg-white/90 w-full backdrop-blur">
+        <div class="mx-auto h-[90px] max-w-7xl px-8 md:px-6">
+            <div class="relative flex h-full items-center justify-between border-b border-slate-500/10">
+                <!-- logo -->
+                <div class="w-[15rem] max-w-full">
+                    <a href="#">
+                        <img src="images/logo-eventree.svg" alt="logo" class="w-full">
+                    </a>
+                </div>
+                <!-- menu -->
+                <div class="flex w-full items-center justify-between">
+                    <nav x-transition :class="!navbarOpen && 'hidden'" id="navbarCollapse"
+                        class="absolute right-0 top-[90px] w-full max-w-[350px] rounded-lg border border-purple-200 bg-white py-5 px-6 shadow-lg shadow-purple-400/5 transition-all lg:static lg:block lg:max-w-full lg:border-none lg:shadow-none lg:bg-transparent lg:px-0 lg:py-0">
+                        <ul class="flex flex-col justify-center gap-8 lg:flex-row">
+                            <li>
+                                <a href="#"
+                                    class="text-lg font-medium text-slate-700 duration-200 hover:text-purple-600 lg:text-base">Home</a>
+                            </li>
+                            <li>
+                                <a href="#category"
+                                    class="text-lg font-medium text-slate-700 duration-200 hover:text-purple-600 lg:text-base">Category</a>
+                            </li>
+                            <li>
+                                <a href="#event"
+                                    class="text-lg font-medium text-slate-700 duration-200 hover:text-purple-600 lg:text-base">Events</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- menu btn -->
+                <div class="md:w-[20rem] sm:max-w-full">
+                    <a href="#"
+                        class=" mr-10 hidden rounded-md bg-purple-500 px-8 py-2.5 font-semibold text-white shadow-md shadow-purple-500/20 duration-200 hover:bg-purple-600 sm:block lg:mr-0">Create
+                        an Event <ion-icon name="add"
+                            class="-mb-[2.5px] ml-1 text-white-500 font-bold  duration-200 group-hover:text-white">
+                        </ion-icon></a>
+
+                    <button @click="navbarOpen = !navbarOpen" :class="navbarOpen && 'navbarTogglerActive'"
+                        id="navbarToggler" class="block lg:hidden">
+                        <ion-icon name="menu-outline" class="text-4xl text-purple-500"></ion-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END header ====== -->
+
+
+    <!-- ====== hero ====== -->
+
+    <section class="relative bg-white py-16 lg:pt-[150px] pb-[150px] bg-hero bg-cover bg-center">
+        <div class="mx-auto max-w-7xl px-8 md:px-6">
+            <div class="flex flex-wrap background-image: url('/images/hero.png');">
+                <div class="w-full lg:w-5/12">
+                    <h1
+                        class="text-slate-50 mb-3 text-4xl font-light leading-snug sm:text-[42px] lg:text-[40px] xl:text-[24px]">
+                        Tiket impianmu tanpa <span class="font-bold">Antri</span></h1>
+                    <p class="text-slate-50 mb-8 max-w-[480px] text-base">Tiket acara impianmu, hanya dengan sekali
+                        klik!
+                    </p>
+                </div>
+
+                <div class="hidden px-4 lg:block lg:w-1/12"></div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ====== END hero ====== -->
+    <!-- ====== Bar Search ====== -->
+    <section class="relative -mt-40  z-10 py-16">
+        <div class="mx-auto max-w-7xl bg-white rounded-md border border-purple-500/10 bg-white  shadow-lg shadow-purple-300/10 duration-200 px-8 py-6 md:px-6">
+            <!-- heading text -->
+            <div class="mb-5 sm:mb-10">
+                <h1 class="text-2xl font-bold text-slate-700 sm:text-3xl">Temukan event </h1>
+            </div>
+            <!-- wrapper -->
+            <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-1 lg:gap-10">
+                <!-- single-blog -->
+                <div class="w-full duration-200 ">
+                    <form class="grid gap-6  sm:grid-cols-2 md:grid-cols-4 lg:gap-10">
+                        <label for="search" class="sr-only">Search</label>
+                        <!-- Location Search -->
+                        <div class="relative  w-full mr-4">
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <ion-icon name="pin" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor">
+                                </ion-icon>
+                            </div>
+                            <input type="text" id="location-search"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 focus:outline-none block w-full pl-10 p-3  "
+                                placeholder="Pilih Lokasi">
+                            <button type="button" class="flex absolute inset-y-0 right-0 items-center pr-3">
+                                <ion-icon name="locate"
+                                    class="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-purple-600"
+                                    fill="currentColor"></ion-icon>
+                            </button>
+                        </div>
+                        <!-- Kategori -->
+                        <div class="relative w-full mr-4 ">
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <ion-icon name="apps" class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                    fill="currentColor"></ion-icon>
+                            </div>
+                            
+                            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 focus:outline-none block w-full pl-10 p-3">
+                                <option>Kategori</option>
+                                <option>Edukasi</option>
+                                <option>Kesehatan</option>
+                                <option>Kopentisi</option>
+                                <option>Lifestyle</option>
+                                <option>Musik</option>
+                                <option>Olahraga</option>
+                                <option>Seminar</option>
+                                <option>Teater</option>
+                            </select>
+                        </div>
+                        <!-- Event Search -->
+                        <div class="relative w-full  mr-4">
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <ion-icon name="search" class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                    fill="currentColor"></ion-icon>
+                            </div>
+                            
+                            <input type="text" id="event-search"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 focus:outline-none block w-full pl-10 p-3  "
+                                placeholder="Cari Event yang kamu inginkan" required>
+                        </div>
+                        <button type="submit"
+                            class="flex align-middle justify-center w-full rounded-md bg-purple-500 px-8 py-3 font-semibold text-white shadow-md shadow-purple-500/20  sm:w-auto">
+                            <ion-icon name="search" class="text-xl mt-0.5 mr-2"></ion-icon>Cari
+                        </button>
+                    </form>
+    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ====== END Search ====== -->
+    <!-- ====== service ====== -->
+    <section class="py-16" id="category">
+        <div class="mx-auto max-w-7xl px-8 md:px-6">
+            <!-- heading text -->
+
+            <div class="mb-5 sm:mb-10">
+                <h1 class="text-2xl font-bold text-slate-700 sm:text-3xl">Lihat kategori yang sedang tren</h1>
+            </div>
+
+            <!-- box wrapper -->
+            <div class="grid gap-6  md:grid-cols-4 xl:gap-8 sm:grid-cols-2">
+                <div
+                    class="group flex cursor-pointer  items-center rounded-md border border-purple-500/10 bg-white  shadow-lg shadow-purple-300/10 duration-200 hover:scale-95">
+                    <ion-icon name="musical-notes"
+                        class="text-[28px] text-purple-500 rounded-md border-purple-500/10 bg-purple-50 px-4 py-2.5 shadow-lg shadow-purple-300/10  mr-4 duration-200 ">
+                    </ion-icon>
+                    <h4 class=" text-[16px] font-semibold text-slate-600 duration-200 ">Musik</h4>
+                </div>
+                <div
+                    class="group flex cursor-pointer  items-center rounded-md border border-purple-500/10 bg-white  shadow-lg shadow-purple-300/10 duration-200 hover:scale-95">
+                    <ion-icon name="happy"
+                        class="text-[28px] text-purple-500 rounded-md border-purple-500/10 bg-purple-50 px-4 py-2.5 shadow-lg shadow-purple-300/10  mr-4 duration-200 ">
+                    </ion-icon>
+                    <h4 class=" text-[16px] font-semibold text-slate-600 duration-200 ">Teater</h4>
+                </div>
+                <div
+                    class="group flex cursor-pointer  items-center rounded-md border border-purple-500/10 bg-white  shadow-lg shadow-purple-300/10 duration-200 hover:scale-95">
+                    <ion-icon name="bicycle"
+                        class="text-[28px] text-purple-500 rounded-md border-purple-500/10 bg-purple-50 px-4 py-2.5 shadow-lg shadow-purple-300/10  mr-4 duration-200 ">
+                    </ion-icon>
+                    <h4 class=" text-[16px] font-semibold text-slate-600 duration-200 ">Olahraga</h4>
+                </div>
+                <div
+                    class="group flex cursor-pointer  items-center rounded-md border border-purple-500/10 bg-white  shadow-lg shadow-purple-300/10 duration-200 hover:scale-95">
+                    <ion-icon name="videocam"
+                        class="text-[28px] text-purple-500 rounded-md border-purple-500/10 bg-purple-50 px-4 py-2.5 shadow-lg shadow-purple-300/10  mr-4 duration-200 ">
+                    </ion-icon>
+                    <h4 class=" text-[16px] font-semibold text-slate-600 duration-200 ">Seminar</h4>
+                </div>
+                <div
+                    class="group flex cursor-pointer  items-center rounded-md border border-purple-500/10 bg-white  shadow-lg shadow-purple-300/10 duration-200 hover:scale-95">
+                    <ion-icon name="school"
+                        class="text-[28px] text-purple-500 rounded-md border-purple-500/10 bg-purple-50 px-4 py-2.5 shadow-lg shadow-purple-300/10  mr-4 duration-200 ">
+                    </ion-icon>
+                    <h4 class=" text-[16px] font-semibold text-slate-600 duration-200 ">Edukasi</h4>
+                </div>
+                <div
+                    class="group flex cursor-pointer  items-center rounded-md border border-purple-500/10 bg-white  shadow-lg shadow-purple-300/10 duration-200 hover:scale-95">
+                    <ion-icon name="medal"
+                        class="text-[28px] text-purple-500 rounded-md border-purple-500/10 bg-purple-50 px-4 py-2.5 shadow-lg shadow-purple-300/10  mr-4 duration-200 ">
+                    </ion-icon>
+                    <h4 class=" text-[16px] font-semibold text-slate-600 duration-200 ">Kopetisi</h4>
+                </div>
+                <div
+                    class="group flex cursor-pointer  items-center rounded-md border border-purple-500/10 bg-white  shadow-lg shadow-purple-300/10 duration-200 hover:scale-95">
+                    <ion-icon name="heart-half"
+                        class="text-[28px] text-purple-500 rounded-md border-purple-500/10 bg-purple-50 px-4 py-2.5 shadow-lg shadow-purple-300/10  mr-4 duration-200 ">
+                    </ion-icon>
+                    <h4 class=" text-[16px] font-semibold text-slate-600 duration-200 ">Kesehatan</h4>
+                </div>
+                <div
+                    class="group flex cursor-pointer  items-center rounded-md border border-purple-500/10 bg-white  shadow-lg shadow-purple-300/10 duration-200 hover:scale-95">
+                    <ion-icon name="shirt"
+                        class="text-[28px] text-purple-500 rounded-md border-purple-500/10 bg-purple-50 px-4 py-2.5 shadow-lg shadow-purple-300/10  mr-4 duration-200 ">
+                    </ion-icon>
+                    <h4 class=" text-[16px] font-semibold text-slate-600 duration-200 ">Lifestyle</h4>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== END service ====== -->
+
+    <!-- ====== Blog ====== -->
+
+    <section class="py-16">
+        <div class="mx-auto max-w-7xl px-8 md:px-6">
+            <!-- heading text -->
+            <div class="mb-5 sm:mb-10">
+                <h1 class="text-2xl font-bold text-slate-700 sm:text-3xl">Event Tersedia</h1>
+            </div>
+            <!-- wrapper -->
+            <div class="mb-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
+                <!-- single-blog -->
+                <div class="w-full duration-200 hover:scale-95">
+                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
+                        <img src="images/hq720.webp" alt="blog img" class="w-full">
+                    </div>
+                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
+                        <div class="">
+                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Music</a>
+                            <a href="#"
+                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">Lorem
+                                Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit.</a>
+                        </div>
+                        <hr class="my-4 border-slate-100">
+                        <div class="flex justify-between">
+                            <p class="text-sm font-semibold capitalize text-slate-600">Alok</p>
+                            <p class="text-sm font-bold text-end text-purple-500">Rp.300.000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- single-blog -->
+                <div class="w-full duration-200 hover:scale-95">
+                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
+                        <img src="images/loginimg.webp" alt="blog img" class="w-full">
+                    </div>
+                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
+                        <div class="">
+                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Jazz</a>
+                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Hip
+                                Hop</a>
+                            <a href="detail-event.html"
+                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">COLDPLAY
+                                - Paris - Live Stade de France 2022</a>
+                        </div>
+                        <hr class="my-4 border-slate-100">
+                        <div class="flex justify-between">
+                            <p class="text-sm font-semibold capitalize text-slate-600">Coldplay</p>
+                            <p class="text-sm font-bold text-end text-purple-500">Rp.300.000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- single-blog -->
+                <div class="w-full duration-200 hover:scale-95">
+                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
+                        <img src="images/tomowrow.webp" alt="Thumbnail" class="w-full aspect-auto">
+                    </div>
+                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
+                        <div class="">
+                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Music</a>
+                            <a href="#" title="Tomorrowland Belgium 2022 | Official Aftermovie"
+                                aria-label="Tomorrowland Belgium 2022 | Official Aftermovie oleh Tomorrowland 1 tahun yang lalu 60 menit, 54 detik 1.319.431.287 x ditonton"
+                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">Tomorrowland
+                                Belgium 2022 | Official Aftermovie</a>
+                        </div>
+                        <hr class="my-4 border-slate-100">
+                        <div class="flex justify-between">
+                            <p class="text-sm font-semibold capitalize text-slate-600">Tomorrowland</p>
+                            <p class="text-sm font-bold text-end text-purple-500">$199</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- wrapper -->
+            <div class="mb-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
+                <!-- single-blog -->
+                <div class="w-full duration-200 hover:scale-95">
+                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
+                        <img src="images/hq720.webp" alt="blog img" class="w-full">
+                    </div>
+                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
+                        <div class="">
+                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Music</a>
+                            <a href="#"
+                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">Lorem
+                                Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit.</a>
+                        </div>
+                        <hr class="my-4 border-slate-100">
+                        <div class="flex justify-between">
+                            <p class="text-sm font-semibold capitalize text-slate-600">Alok</p>
+                            <p class="text-sm font-bold text-end text-purple-500">Rp.300.000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- single-blog -->
+                <div class="w-full duration-200 hover:scale-95">
+                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
+                        <img src="images/loginimg.webp" alt="blog img" class="w-full">
+                    </div>
+                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
+                        <div class="">
+                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Jazz</a>
+                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Hip
+                                Hop</a>
+                            <a href="detail-event.html"
+                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">COLDPLAY
+                                - Paris - Live Stade de France 2022</a>
+                        </div>
+                        <hr class="my-4 border-slate-100">
+                        <div class="flex justify-between">
+                            <p class="text-sm font-semibold capitalize text-slate-600">Coldplay</p>
+                            <p class="text-sm font-bold text-end text-purple-500">Rp.300.000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- single-blog -->
+                <div class="w-full duration-200 hover:scale-95">
+                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
+                        <img src="images/tomowrow.webp" alt="Thumbnail" class="w-full aspect-auto">
+                    </div>
+                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
+                        <div class="">
+                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Music</a>
+                            <a href="#" title="Tomorrowland Belgium 2022 | Official Aftermovie"
+                                aria-label="Tomorrowland Belgium 2022 | Official Aftermovie oleh Tomorrowland 1 tahun yang lalu 60 menit, 54 detik 1.319.431.287 x ditonton"
+                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">Tomorrowland
+                                Belgium 2022 | Official Aftermovie</a>
+                        </div>
+                        <hr class="my-4 border-slate-100">
+                        <div class="flex justify-between">
+                            <p class="text-sm font-semibold capitalize text-slate-600">Tomorrowland</p>
+                            <p class="text-sm font-bold text-end text-purple-500">$199</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex mt-10 content-center  justify-center">
+                <a href="all-event.html"
+                    class="w-full rounded-md bg-purple-500 px-28 py-2.5  font-semibold text-white shadow-md shadow-purple-500/20 hover:bg-purple-600 duration-200 sm:w-auto">See
+                    More</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ====== END Blog ====== -->
+    <!-- ====== footer ====== -->
+
+    <footer class="bg-slate-50/80 pt-16">
+        <div class="mx-auto max-w-7xl px-8 md:px-6">
+
+
+            <!-- footer bottom -->
+            <div class="flex justify-between border-t py-8 sm:flex-row">
+                <p class="text-sm text-slate-500">©2022 <a href="#" class="text-slate-700 hover:text-purple-500">
+                        Eventre</a></p>
+            </div>
+            <!-- End footer bottom -->
+
+        </div>
+    </footer>
+
+    <!-- ====== END footer ====== -->
+
+
+
+</body>
+
+</html>
