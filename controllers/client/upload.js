@@ -3,7 +3,7 @@ const mysql = require('../../models/db');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public/thumb');
+    cb(null, './upload');
   },
   filename: function (req, file, cb) {
     cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);

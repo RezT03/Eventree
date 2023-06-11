@@ -23,7 +23,7 @@ router.post('/auth', (req, res) => {
                 if (result) {
                     mysql.query(`SELECT * FROM user WHERE email = '${email}'`, (error, result, field) => {
                         if (result) {
-                            req.session.loggedin = true
+                            req.session.login = true
                             req.session.nama = result[0].nama_depan
                             user_id= result[0].user_id
                             res.redirect('/')

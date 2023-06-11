@@ -9,8 +9,8 @@ const {
 } = require('uuid')
 
 router.get('/create', (req, res, next) => {
-  if(req.session.vendor){
-    response.render('./admin/createEvent')
+  if(req.session.login){
+    res.render('./admin/upload-event')
   }else{
     res.redirect('/')
   }
