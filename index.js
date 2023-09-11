@@ -3,17 +3,22 @@ const app = express()
 const ejs = require('ejs')
 const mysql = require('./models/db')
 const router = express.Router('caseSensitive')
+const bodyParser = require('body-parser')
 const session = require('express-session')
 const { MemoryStore } = require('express-session')
 const flash = require('express-flash')
 const path = require('path')
 const memoryStore = require('express-session')
+
 // route calls
 const userLogin = require('./controllers/client/userLoginControllers') //userLogin.
+// const userEdit = require('./controllers/client/userEdit') //user
 const admin = require('./controllers/client/EOLoginControllers') //adminLogin
 const createEvent = require('./controllers/client/EOcreateEvent') //create events
 const userReg = require('./controllers/client/userRegister')
-const book = require('./controllers/client/userBookEvent')
+const book = require('./controllers/client/userBookEvent') //User booking
+const upload = require('./controllers/client/upload')
+const { json } = require('body-parser')
 
 app.set('trust proxy', 1)
 app.use(session({
@@ -25,8 +30,8 @@ app.use(session({
 }))
 app.use(flash())
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-// app.use(express.static(join(__dir)))
+// app.use(bodyParser())
+app.use(express.urlencoded({extended: false}))
 
 app.set('view engine', 'ejs')
 app.set('case sensitive routing', true)
@@ -37,7 +42,7 @@ app.get('/', (req, res)=>{
     mysql.query(`SELECT * FROM event`, (err, result, rows)=>{
         // console.log(result)
         if(err) throw err
-        if(req.session.loggedin){
+        if(req.session.login){
             res.render('./client/index',{
                 title: 'Eventree',
                 event: result,
@@ -50,27 +55,30 @@ app.get('/', (req, res)=>{
                 login:false
             })
         }
+        
+        // console.log(login)
     })
 })
 
-// app.get('/apps', (req, res, next) => {
-//     res.render('client/home')
-// })
+app.get('/logout', (req, res) => {
+    req.session.destroy((err)=>{
+        res.redirect('/')
+    });
+})
 
-
-// app.get('/event/:id/create', (req, res) => {
-//     let id= req.params.id 
-//     res.send(id)
-// })
+app.get('/detail', (req, res) => {
+    res.render('client/detail-event',{
+        login:true
+    })
+})
 
 app.use('/img/', express.static(path.join(__dirname, 'assets/img')))
 
 app.use('/', userLogin)
 app.use('/', book)
-
 app.use('/', userReg)
 app.use('/', admin)
-app.use('/event', createEvent)
+app.use('/event', upload.single('img'), createEvent)
 
 app.use((req, res) => {
     res.status(404).render('404')

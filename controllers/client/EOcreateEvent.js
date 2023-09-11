@@ -1,5 +1,4 @@
 const mysql = require('../../models/db')
-
 const express = require('express')
 const router = express.Router()
 const upload = require('./upload')
@@ -18,20 +17,16 @@ router.get('/create', (req, res, next) => {
 })
 
 router.post('/creating',upload.single(), (req, res, next) => {
+  let id = uuidv4()
   let event = req.body.event
   let mulai = req.body.mulai
   let selesai = req.body.selesai
-  let img = req.file
-  let thumbnail = img.path
+  let img = req.body.thumb
   let desc = req.body.desc
-  let harga = req.body.harga
-  let category = req.body.category
-  let vendor_id = req.vendor.id
-  let id = uuidv4()
+  let harga = req.body.price
+  let userid = req.user.id
 
-// router.post('/uploadImage') 
-
-  mysql.query(`INSERT INTO event (event_id, nama_event, mulai, selesai, thumbnail, category, deskripsi, harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [id, event, mulai, selesai, thumbnail, category, desc, harga], (error, result, field) => {
+  mysql.query(`INSERT INTO event (event_id, nama_event, mulai, thumbnail, deskripsi, harga, userid) VALUES (?, ?, ?, ?, ?, ?)`, [id, event, mulai, selesai,img, desc, harga], (error, result, field) => {
     if (error) throw error
     res.redirect('/')
   })

@@ -26,4 +26,19 @@ const upload = multer({
   fileFilter: fileFilter
 });
 
-module.exports = upload;
+// const storage = multer.diskStorage({
+//   destination: './uploads',
+//   filename: (req, file, cb) => {
+//     const fileName = `${Date.now()}-${file.originalname}`;
+//     cb(null, fileName);
+//   }
+// });
+
+// const upload = multer({
+//   storage: storage,
+//   limits: {
+//     fileSize: 5 * 1024 * 1024 // 5MB
+//   }
+// });
+
+module.exports = upload

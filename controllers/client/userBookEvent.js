@@ -18,7 +18,16 @@ router.get('/events/book/:event_id', (req, res) => {
 })
 
 router.get('/events/checkout/:event_id', (req, res) => {
-    res.render('client/payment')   
+    res.render('client/payment')
+    let user = req.user_id
+    let event = req.params.event_id
+    let number = Math.floor(Math.random()*999999999999999)+1
+    if(paid){
+        mysql.query(`INSERT INTO ticket(eventid, user_id, ticket_no) VALUES (?, ?, ?)`, [event, user, number], (error, result)=>{
+            if(error) throw error
+            res.redirect('/account/myticket')
+        })
+    }
 })
 
 module.exports = router

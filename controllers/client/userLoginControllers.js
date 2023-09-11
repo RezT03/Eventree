@@ -31,6 +31,7 @@ router.post('/auth', (req, res) => {
                     })
                 } else {
                     req.flash('msg', 'Email atau Password salah!')
+                    req.session.login = false
                     res.redirect('/login')
                 }
             })
