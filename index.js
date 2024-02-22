@@ -18,7 +18,7 @@ const createEvent = require('./controllers/client/EOcreateEvent') //create event
 const userReg = require('./controllers/client/userRegister')
 const book = require('./controllers/client/userBookEvent') //User booking
 const upload = require('./controllers/client/upload')
-const { json } = require('body-parser')
+// const { json } = require('body-parser')
 
 app.set('trust proxy', 1)
 app.use(session({
@@ -56,7 +56,7 @@ app.get('/', (req, res)=>{
             })
         }
         
-        // console.log(login)
+        // console.log(event.nama_event)
     })
 })
 
@@ -66,11 +66,11 @@ app.get('/logout', (req, res) => {
     });
 })
 
-app.get('/detail', (req, res) => {
-    res.render('client/detail-event',{
-        login:true
-    })
-})
+// app.get('/detail', (req, res) => {
+//     res.render('client/detail-event',{
+//         // login:true
+//     })
+// })
 
 app.use('/img/', express.static(path.join(__dirname, 'assets/img')))
 

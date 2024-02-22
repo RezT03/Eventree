@@ -6,7 +6,7 @@ const router = express.Router()
 // user log_in
 router.get('/login', (req, res) => {
     res.render('./client/login', {
-        'tite': "Login",
+        'title': "Login-Eventree",
         'flash': req.flash('msg'),
         // async: true
     })

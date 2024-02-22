@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/register', (req, res) => {
     res.render('./client/userRegister', {
-        title: 'Register',
+        title: 'Register-Eventree',
         flash: req.flash('err')
     })
 })

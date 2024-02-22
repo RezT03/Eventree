@@ -3,10 +3,9 @@ const mysql = require('../../models/db')
 const bcrypt = require('bcryptjs')
 const router = express.Router()
 
-
 router.get('/EOlogin', (req, res) => {
     res.render('./client/userlogin', {
-        'tite': "Login",
+        'title': "Login",
         'flash': req.flash('msg')
     })
 })

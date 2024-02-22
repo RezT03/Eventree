@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evnetry</title>
+    <title><%= title %></title>
     <link rel="shortcut icon" href="/img/logo-favicon-eventree.svg" type="image/x-icon">
     <!-- google font link -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -222,130 +222,27 @@
             <!-- wrapper -->
             <div class="mb-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
                 <!-- single-blog -->
-                <div class="w-full duration-200 hover:scale-95">
-                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
-                        <img src="/img//hq720.webp" alt="blog img" class="w-full">
-                    </div>
-                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
-                        <div class="">
-                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Music</a>
-                            <a href="#"
-                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">Lorem
-                                Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit.</a>
+                <% event.forEach(result => { %>
+                    <div class="w-full duration-200 hover:scale-95">
+                        <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
+                            <img src="/img//hq720.webp" alt="blog img" class="w-full">
                         </div>
-                        <hr class="my-4 border-slate-100">
-                        <div class="flex justify-between">
-                            <p class="text-sm font-semibold capitalize text-slate-600">Alok</p>
-                            <p class="text-sm font-bold text-end text-purple-500">Rp.300.000</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- single-blog -->
-                <div class="w-full duration-200 hover:scale-95">
-                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
-                        <img src="/img//loginimg.webp" alt="blog img" class="w-full">
-                    </div>
-                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
-                        <div class="">
-                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Jazz</a>
-                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Hip
-                                Hop</a>
-                            <a href="detail-event.html"
-                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">COLDPLAY
-                                - Paris - Live Stade de France 2022</a>
-                        </div>
-                        <hr class="my-4 border-slate-100">
-                        <div class="flex justify-between">
-                            <p class="text-sm font-semibold capitalize text-slate-600">Coldplay</p>
-                            <p class="text-sm font-bold text-end text-purple-500">Rp.300.000</p>
+                        <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
+                            <div class="">
+                                <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600"><%= result.category %></a>
+                                <a href="/event/<%= result.event_id %>"
+                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500"><%= result.nama_event %></a>
+                            </div>
+                            <hr class="my-4 border-slate-100">
+                            <div class="flex justify-between">
+                                <p class="text-sm font-semibold capitalize text-slate-600">Artist</p>
+                                <p class="text-sm font-bold text-end text-purple-500"><%= result.harga %></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- single-blog -->
-                <div class="w-full duration-200 hover:scale-95">
-                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
-                        <img src="/img//tomowrow.webp" alt="Thumbnail" class="w-full aspect-auto">
-                    </div>
-                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
-                        <div class="">
-                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Music</a>
-                            <a href="#" title="Tomorrowland Belgium 2022 | Official Aftermovie"
-                                aria-label="Tomorrowland Belgium 2022 | Official Aftermovie oleh Tomorrowland 1 tahun yang lalu 60 menit, 54 detik 1.319.431.287 x ditonton"
-                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">Tomorrowland
-                                Belgium 2022 | Official Aftermovie</a>
-                        </div>
-                        <hr class="my-4 border-slate-100">
-                        <div class="flex justify-between">
-                            <p class="text-sm font-semibold capitalize text-slate-600">Tomorrowland</p>
-                            <p class="text-sm font-bold text-end text-purple-500">$199</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- wrapper -->
-            <div class="mb-6 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:gap-10">
-                <!-- single-blog -->
-                <div class="w-full duration-200 hover:scale-95">
-                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
-                        <img src="/img//hq720.webp" alt="blog img" class="w-full">
-                    </div>
-                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
-                        <div class="">
-                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Music</a>
-                            <a href="#"
-                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">Lorem
-                                Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit.</a>
-                        </div>
-                        <hr class="my-4 border-slate-100">
-                        <div class="flex justify-between">
-                            <p class="text-sm font-semibold capitalize text-slate-600">Alok</p>
-                            <p class="text-sm font-bold text-end text-purple-500">Rp.300.000</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- single-blog -->
-                <div class="w-full duration-200 hover:scale-95">
-                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
-                        <img src="/img//loginimg.webp" alt="blog img" class="w-full">
-                    </div>
-                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
-                        <div class="">
-                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Jazz</a>
-                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Hip
-                                Hop</a>
-                            <a href="detail-event.html"
-                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">COLDPLAY
-                                - Paris - Live Stade de France 2022</a>
-                        </div>
-                        <hr class="my-4 border-slate-100">
-                        <div class="flex justify-between">
-                            <p class="text-sm font-semibold capitalize text-slate-600">Coldplay</p>
-                            <p class="text-sm font-bold text-end text-purple-500">Rp.300.000</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- single-blog -->
-                <div class="w-full duration-200 hover:scale-95">
-                    <div class="max-h-52 w-full overflow-hidden rounded-t-xl">
-                        <img src="/img//tomowrow.webp" alt="Thumbnail" class="w-full aspect-auto">
-                    </div>
-                    <div class="rounded-b-xl px-5 pb-5 pt-3 shadow-md shadow-purple-500/10">
-                        <div class="">
-                            <a href="#" class="mr-2 rounded-md bg-purple-50 px-3 py-1 text-sm text-slate-600">Music</a>
-                            <a href="#" title="Tomorrowland Belgium 2022 | Official Aftermovie"
-                                aria-label="Tomorrowland Belgium 2022 | Official Aftermovie oleh Tomorrowland 1 tahun yang lalu 60 menit, 54 detik 1.319.431.287 x ditonton"
-                                class="block pt-4 font-medium capitalize text-slate-800 hover:text-purple-500">Tomorrowland
-                                Belgium 2022 | Official Aftermovie</a>
-                        </div>
-                        <hr class="my-4 border-slate-100">
-                        <div class="flex justify-between">
-                            <p class="text-sm font-semibold capitalize text-slate-600">Tomorrowland</p>
-                            <p class="text-sm font-bold text-end text-purple-500">$199</p>
-                        </div>
+                    <% }) %>
+               
+                        
                     </div>
                 </div>
             </div>

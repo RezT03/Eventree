@@ -6,15 +6,15 @@ const conn = mysql.createConnection({
 	database : 'event'
 }) 
 
-conn.connect((error)=>{
-	if(error)
-	{
-		throw error;
-	}
-	else
-	{
-		console.log('Connected');
-	}
-});
+// conn.connect((error)=>{
+// 	if(error)
+// 	{
+// 		throw error;
+// 	}
+// 	else
+// 	{
+// 		console.log('Connected');
+// 	}
+// });
 
 module.exports = conn
